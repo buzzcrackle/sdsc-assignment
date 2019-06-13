@@ -20,20 +20,31 @@ class Solution {
 	 */
 	public static boolean isSubtree(TreeNode s, TreeNode t) {
 		// Gets list of all nodes that match the head node of t
-		List<TreeNode> matchingHeads = searchForHeads(s, t);
+		List<TreeNode> matchingHeads = new ArrayList<>();
+		try {
+			matchingHeads = searchForHeads(s, t);
+		} catch (Exception e) {
+			System.err.println("Error: Failure when finding matching heads");
+		} 
 
 		// Iterate through the list and check if there is a subtree in s that 
 		// matches t
-		for (TreeNode node : matchingHeads) {
-			
-			// If the tree is equal, that means t must be a subtree of s, 
-			// therefore return true
-			if (treesEqual(node, t)) {
-				return true;
+		try {
+			for (TreeNode node : matchingHeads) {
+				
+				// If the tree is equal, that means t must be a subtree of s, 
+				// therefore return true
+				if (treesEqual(node, t)) {
+					System.out.println(true);
+					return true;
+				}
 			}
+		} catch (Exception e) {
+			System.err.println("Error: Failure when comparing trees");
 		}
 
 		// No subtrees matched t, therefore return false
+		System.out.println(false);
 		return false;
 	}
 
